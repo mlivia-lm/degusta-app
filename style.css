@@ -1,0 +1,219 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* BODY */
+  body {
+    background: #f8f2f7;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  /* BOTÕES */
+  button {
+    background: #a84fa1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background: #8e3d8f;
+  }
+  
+  /* LINKS */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* HOMEPAGE */
+  .homepage {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .homepage .logo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .homepage h1 {
+    font-size: 2.5rem;
+    color: #a84fa1;
+    margin-bottom: 30px;
+  }
+  
+  .homepage .botoes button {
+    width: 150px;
+    margin: 10px;
+  }
+  
+  /* REGISTRAR */
+  .registrar {
+    max-width: 500px;
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .registrar h1 {
+    text-align: center;
+    color: #a84fa1;
+    margin-bottom: 20px;
+  }
+  
+  .registrar .formulario {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .registrar label {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .registrar input,
+  .registrar select {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+  }
+  
+  .registrar button {
+    margin-top: 15px;
+  }
+  
+  /* CONSULTAR */
+  .consultar {
+    max-width: 700px;
+    width: 100%;
+  }
+  
+  .consultar h1 {
+    text-align: center;
+    color: #a84fa1;
+    margin-bottom: 20px;
+  }
+  
+  #mes {
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    width: 50%;
+  }
+  
+  /* CALENDÁRIO SIMPLES */
+  .calendario {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 dias da semana */
+    gap: 5px;
+    text-align: center;
+  }
+  
+  .calendario div {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: 0.2s;
+  }
+  
+  .calendario div:hover {
+    background: #f2e7f3;
+  }
+  
+  .calendario div:nth-child(-n+7) { /* cabeçalho dos dias da semana */
+    background: #f0dff4;
+    font-weight: bold;
+    cursor: default;
+  }
+  
+  
+  /* MODAL */
+  .modal {
+    display: none; /* escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  .modal-conteudo {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 16px;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  .fechar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .fechar:hover {
+    color: #000;
+  }
+  
+  /* DETALHES DO DIA */
+  #detalhes-dia ul {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+  }
+  
+  #detalhes-dia li {
+    background: #f2e7f3;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  #resumo-dia {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #5d3c8f;
+  }
+  
+  /* RESPONSIVO */
+  @media(max-width: 500px) {
+    .homepage .logo {
+      width: 120px;
+      height: 120px;
+    }
+  
+    #mes {
+      width: 100%;
+    }
+  }
+  

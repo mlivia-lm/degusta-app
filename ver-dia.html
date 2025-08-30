@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ver Dia - Degusta</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ver-dia">
+      <h1>Transações do Dia</h1>
+
+      <div id="detalhes-dia"></div>
+      <div id="resumo-dia"></div>
+
+      <button onclick="window.location.href='index.html'">Voltar</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // pegar o dia atual
+      let hoje = new Date();
+      let dataHoje = `${hoje.getFullYear()}-${String(
+        hoje.getMonth() + 1
+      ).padStart(2, "0")}-${String(hoje.getDate()).padStart(2, "0")}`;
+
+      function mostrarDiaAtual() {
+        let detalhesDiv = document.getElementById("detalhes-dia");
+        let resumoDiv = document.getElementById("resumo-dia");
+        detalhesDiv.innerHTML = "";
+        resumoDiv.innerHTML = "";
+
+        let entradas = transacoes.filter(
+          (t) => t.data === dataHoje && t.tipo === "entrada"
+        );
+        let saidas = transacoes.filter(
+          (t) => t.data === dataHoje && t.tipo === "saida"
+        );
+
+        if (entradas.length > 0) {
+          let ulE = document.createElement("ul");
+          entradas.forEach((e, index) => {
+            let li = document.createElement("li");
+            li.textContent = `Entrada: ${e.descricao} - R$ ${e.valor.toFixed(
+              2
+            )}`;
+            let btn = document.createElement("button");
+            btn.textContent = "❌";
+            btn.onclick = () => {
+              if (
+                confirm(
+                  `Deseja realmente excluir a entrada: ${
+                    e.descricao
+                  } - R$ ${e.valor.toFixed(2)}?`
+                )
+              ) {
+                removerTransacaoIndex(e, index);
+              }
+            };
+
+            li.appendChild(btn);
+            ulE.appendChild(li);
+          });
+          detalhesDiv.appendChild(ulE);
+        }
+
+        if (saidas.length > 0) {
+          let ulS = document.createElement("ul");
+          saidas.forEach((s, index) => {
+            let li = document.createElement("li");
+            li.textContent = `Saída: ${s.descricao} - R$ ${s.valor.toFixed(2)}`;
+            let btn = document.createElement("button");
+            btn.textContent = "❌";
+            btn.onclick = () => {
+              removerTransacaoIndex(s, index);
+            };
+            li.appendChild(btn);
+            ulS.appendChild(li);
+          });
+          detalhesDiv.appendChild(ulS);
+        }
+
+        let totalEntradas = entradas.reduce((a, b) => a + b.valor, 0);
+        let totalSaidas = saidas.reduce((a, b) => a + b.valor, 0);
+        let saldo = totalEntradas - totalSaidas;
+
+        resumoDiv.innerHTML = `<p>Entradas: R$ ${totalEntradas.toFixed(2)}</p>
+                             <p>Saídas: R$ ${totalSaidas.toFixed(2)}</p>
+                             <p><strong>Saldo: R$ ${saldo.toFixed(
+                               2
+                             )}</strong></p>`;
+      }
+
+      function removerTransacaoIndex(item, index) {
+        let i = transacoes.findIndex((t) => t === item);
+        if (i !== -1) {
+          transacoes.splice(i, 1);
+          localStorage.setItem("transacoes", JSON.stringify(transacoes));
+          mostrarDiaAtual();
+        }
+      }
+
+      mostrarDiaAtual();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar - Degusta</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="consultar">
+    <h1>Consultar Entradas/Saídas</h1>
+
+    <!-- Seleção de mês -->
+    <label for="mes">Escolha o mês:</label>
+    <input type="month" id="mes">
+
+    <!-- Calendário simples -->
+    <div id="calendario" class="calendario"></div>
+
+    <!-- Modal para detalhes do dia -->
+    <div id="modal" class="modal">
+      <div class="modal-conteudo">
+        <span id="fechar" class="fechar">&times;</span>
+        <h2 id="data-modal"></h2>
+        <div id="detalhes-dia"></div>
+        <div id="resumo-dia"></div>
+      </div>
+    </div>
+
+    <button onclick="window.location.href='index.html'">Voltar</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
